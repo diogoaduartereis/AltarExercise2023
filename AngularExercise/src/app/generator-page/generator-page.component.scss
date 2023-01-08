@@ -1,0 +1,48 @@
+.columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .column {
+    flex: 33.33%;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .fullWidth {
+    width: 100%;
+  }
+
+  .centerMargin {
+    margin: 0 auto;
+  }
+
+  .justifyContentCenter {
+    justify-content: center;
+  }
+
+  table {
+    table-layout: fixed;
+    width: 80vh;
+    height: 60vh;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  .dot {
+    height: 25px;
+    width: 25px;
+    background-color: rgba(255, 0, 0, 0.589);
+    border-radius: 50%;
+    display: inline-block;
+  }

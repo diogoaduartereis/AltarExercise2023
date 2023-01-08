@@ -1,1 +1,36 @@
-<p>generator-page works!</p>
+<div>
+    <div class="columns">
+        <div class="column">
+            <h6 class="row fullWidth centerMargin justifyContentCenter">Character</h6> 
+            <input class="row centerMargin" type="text" [(ngModel)]="this.writtenChar" maxlength="1" (keypress)="oneCharOnly($event)">
+        </div>
+        <div class="column">
+            
+        </div>
+        <div class="column">
+            <button (click)="this.generate2DGrid()" mat-raised-button color="primary">Generate 2D Grid</button>
+        </div>
+    </div>
+    <br><br>
+    <table class="centerMargin">
+        <tr>
+            <th style="border-left: 0px; border-top: 0px;">&nbsp;</th>
+            <th *ngFor="let columnNumber of this.numbersOfColumnsInArray;">
+                {{columnNumber}}
+            </th>
+        </tr>
+        <tr *ngFor="let row of this.arrayOfCellValues; let i = index;">
+            <th>{{i}}</th>
+            <td style="text-align: center;" *ngFor="let col of row"> {{col}} </td>
+        </tr>  
+    </table>
+
+    <br>
+    <br>
+
+    <div *ngIf="this.isLive" style="justify-content: center; display: flex;">
+        <span class="dot"></span>
+        &nbsp;
+        <h4>Live</h4>
+    </div>
+</div>
