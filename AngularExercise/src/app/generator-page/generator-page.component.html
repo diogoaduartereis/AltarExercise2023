@@ -1,0 +1,47 @@
+<div>
+    <div class="columns">
+        <div class="column">
+            <h6 class="row fullWidth centerMargin justifyContentCenter">Character</h6> 
+            <input [disabled]="!this.gridService.isLive" placeholder="Character" class="row centerMargin charInput" type="text" [(ngModel)]="this.gridService.writtenChar" maxlength="1" (keypress)="oneCharOnly($event)">
+        </div>
+        <div class="column textAlignCenter">
+            <button [routerLink]="'/payments'" mat-raised-button color="accent">Payments</button>
+        </div>
+        <div class="column textAlignCenter">
+            <button *ngIf="!this.gridService.isLive" (click)="this.generate2DGrid()" mat-raised-button color="primary">Generate 2D Grid</button>
+            <button *ngIf="this.gridService.isLive" (click)="this.cancelGridGeneration()" mat-raised-button color="warn">Stop Grid Generation</button>
+            <button style="margin-left: 2px;" *ngIf="this.gridService.gridHasValues" mat-raised-button (click)="this.clearGridValues()" aria-label="Clear Grid Values">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+    <br><br>
+    <table class="centerMargin" bordercolor="darkGrey">
+        <tr>
+            <th style="border-top: hidden; border-left: hidden;">&nbsp;</th>
+            <th *ngFor="let columnNumber of this.gridService.numbersOfColumnsInArray;">
+                {{columnNumber}}
+            </th>
+        </tr>
+        <tr *ngFor="let row of this.gridService.arrayOfCellValues; let i = index;">
+            <th>{{i}}</th>
+            <td style="text-align: center;" *ngFor="let col of row;"> 
+                {{col}} 
+            </td>
+        </tr>  
+    </table>
+
+    <br>
+    <br>
+
+    <div *ngIf="this.gridService.isLive">
+        <div class="justifyFlexContentCenter" style="align-items: baseline;">
+            <span class="dot"></span>
+            &nbsp;
+            <p style="font-weight: 500;">LIVE</p>
+        </div>
+        <div class="generatedCode">
+            YOUR CODE: {{this.gridService.generatedCode}}
+        </div>
+    </div>
+</div>
