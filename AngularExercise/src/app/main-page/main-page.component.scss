@@ -1,5 +1,18 @@
-.centerDiv {
-    position:fixed; 
-    bottom:50%; 
-    left:50%;
+.flex-parent {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+  
+  .jc-center {
+    justify-content: center;
+  }
+  
+  button.margin-right {
+    margin-right: 20px;
+  }
+
+.bigIntroButton {
+    width: 300px;
+    height: 300px;
 }

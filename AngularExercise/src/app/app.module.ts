@@ -14,13 +14,14 @@ import { MatFormFieldModule } from '@angular/material/form-field/'
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     GeneratorPageComponent,
-    PaymentsPageComponent
+    PaymentsPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +34,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

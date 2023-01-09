@@ -10,7 +10,7 @@
         <div class="column textAlignCenter">
             <button *ngIf="!this.gridService.isLive" (click)="this.generate2DGrid()" mat-raised-button color="primary">Generate 2D Grid</button>
             <button *ngIf="this.gridService.isLive" (click)="this.cancelGridGeneration()" mat-raised-button color="warn">Stop Grid Generation</button>
-            <button style="margin-left: 2px;" *ngIf="this.gridService.gridHasValues" mat-raised-button color="primary" (click)="this.clearGridValues()" aria-label="Clear Grid Values">
+            <button style="margin-left: 2px;" *ngIf="this.gridService.gridHasValues" mat-raised-button (click)="this.clearGridValues()" aria-label="Clear Grid Values">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>
