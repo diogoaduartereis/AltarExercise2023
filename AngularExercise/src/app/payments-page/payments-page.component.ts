@@ -15,7 +15,7 @@ export class PaymentsPageComponent implements OnInit {
   paymentFormControl = new FormControl('', [Validators.required]);
   amountFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
   paymentsList: PaymentEntry[] = [];
-  displayedColumns: string[] = ['Name', 'Amount', 'Code', 'Grid'];
+  displayedColumns: string[] = ['Name', 'Amount', 'Code', 'Grid', "Remove"];
 
   @ViewChild(MatTable) table: MatTable<any>;
   constructor(public gridService: GridGenerationService, public paymentService: PaymentsService) { 
@@ -43,6 +43,13 @@ export class PaymentsPageComponent implements OnInit {
         this.table.renderRows();
       });
     }
+  }
+
+  removeRow(row: PaymentEntry) {
+    this.paymentService.deletePayment(row).subscribe(response => {
+      this.paymentsList = this.paymentsList.filter(x => x != row);
+      this.table.renderRows();
+    });
   }
 
 }

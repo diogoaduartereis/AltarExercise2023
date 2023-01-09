@@ -40,6 +40,15 @@ export class PaymentsService {
       .pipe(retry(1), catchError(this.handleError)); 
     }
 
+  deletePayment(paymentEntry: PaymentEntry): Observable<PaymentEntry> {
+    return this.http
+      .delete<PaymentEntry>(
+        this.environment.apiUrl + '/api/payments/' + paymentEntry._id,
+        this.httpOptions
+      )
+      .pipe(retry(1), catchError(this.handleError)); 
+    }
+
   // Error handling
   handleError(error: any) {
     let errorMessage = '';

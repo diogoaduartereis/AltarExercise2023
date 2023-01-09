@@ -63,3 +63,25 @@ exports.create = (req, res) => {
           .send({ message: "Error retrieving Payment with id=" + id });
       });
   };
+
+  exports.delete = (req, res) => {
+    const id = req.params.id;
+  
+    Payment.findByIdAndRemove(id)
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot delete Payment with id=${id}. Maybe Payment was not found!`
+          });
+        } else {
+          res.send({
+            message: "Payment was deleted successfully!"
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Could not delete Payment with id=" + id
+        });
+      });
+  };

@@ -9,5 +9,8 @@ module.exports = app => {
     // Retrieve all Payments
     router.get("/", payments.findAll);
 
+    // Delete a Payment with id
+    router.delete("/:id", payments.delete);
+
     app.use('/api/payments', router);
 }
