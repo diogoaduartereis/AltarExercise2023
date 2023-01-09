@@ -19,7 +19,7 @@ export class PaymentsService {
 
   constructor(
     @Inject('environment') environment, private http: HttpClient
-  ) { 
+  ) {
     this.environment = environment;
   }
 
@@ -37,7 +37,7 @@ export class PaymentsService {
         JSON.stringify(paymentEntry),
         this.httpOptions
       )
-      .pipe(retry(1), catchError(this.handleError)); 
+      .pipe(retry(1), catchError(this.handleError));
     }
 
   deletePayment(paymentEntry: PaymentEntry): Observable<PaymentEntry> {
@@ -46,11 +46,11 @@ export class PaymentsService {
         this.environment.apiUrl + '/api/payments/' + paymentEntry._id,
         this.httpOptions
       )
-      .pipe(retry(1), catchError(this.handleError)); 
+      .pipe(retry(1), catchError(this.handleError));
     }
 
   // Error handling
-  handleError(error: any) {
+  handleError(error: any): Observable<any>{
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // Get client-side error

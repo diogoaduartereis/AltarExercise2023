@@ -1,6 +1,6 @@
 export interface PaymentEntry {
     _id?: string;
-    name: string,
+    name: string;
     amount: number;
     code: string;
     grid: string[][];

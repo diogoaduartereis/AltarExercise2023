@@ -13,24 +13,24 @@ import { MatTable } from '@angular/material/table';
 export class PaymentsPageComponent implements OnInit {
   isLive: boolean;
   paymentFormControl = new FormControl('', [Validators.required]);
-  amountFormControl = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$")]);
+  amountFormControl = new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]);
   paymentsList: PaymentEntry[] = [];
-  displayedColumns: string[] = ['Name', 'Amount', 'Code', 'Grid', "Remove"];
+  displayedColumns: string[] = ['Name', 'Amount', 'Code', 'Grid', 'Remove'];
 
   @ViewChild(MatTable) table: MatTable<any>;
-  constructor(public gridService: GridGenerationService, public paymentService: PaymentsService) { 
+  constructor(public gridService: GridGenerationService, public paymentService: PaymentsService) {
   }
 
   ngOnInit(): void {
-    this.paymentService.getPayments().subscribe(payments => this.paymentsList = payments)
+    this.paymentService.getPayments().subscribe(payments => this.paymentsList = payments);
     this.gridService.cancelGridGeneration();
     this.gridService.generate2DGrid();
   }
 
-  addPayment() {
-    if(!this.paymentFormControl.errors && !this.amountFormControl.errors) {
+  addPayment(): void {
+    if (!this.paymentFormControl.errors && !this.amountFormControl.errors) {
 
-      let newPayment = {
+      const newPayment = {
         name: this.paymentFormControl.value,
         amount: this.amountFormControl.value,
         code: this.gridService.generatedCode,
@@ -45,9 +45,9 @@ export class PaymentsPageComponent implements OnInit {
     }
   }
 
-  removeRow(row: PaymentEntry) {
+  removeRow(row: PaymentEntry): void {
     this.paymentService.deletePayment(row).subscribe(response => {
-      this.paymentsList = this.paymentsList.filter(x => x != row);
+      this.paymentsList = this.paymentsList.filter(x => x !== row);
       this.table.renderRows();
     });
   }

@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TableCell } from '../interfaces/TableCell';
-import {interval, Subscription, timer} from 'rxjs';
+import { interval, Subscription, timer } from 'rxjs';
 import { GridGenerationService } from '../services/grid-generation.service';
 
 @Component({
@@ -9,34 +9,34 @@ import { GridGenerationService } from '../services/grid-generation.service';
   styleUrls: ['./generator-page.component.scss']
 })
 export class GeneratorPageComponent implements OnInit {
-  canEnterChar: boolean = true;
+  canEnterChar = true;
 
-  constructor(public gridService:GridGenerationService) { }
+  constructor(public gridService: GridGenerationService) { }
 
   ngOnInit(): void {
   }
 
-  generate2DGrid() {
+  generate2DGrid(): void{
     this.gridService.generate2DGrid();
   }
 
-  cancelGridGeneration() {
+  cancelGridGeneration(): void{
     this.gridService.cancelGridGeneration();
   }
-  
-  clearGridValues() {
+
+  clearGridValues(): void{
     this.gridService.clearGridValues();
   }
 
   oneCharOnly(event): boolean {
-    if(!this.canEnterChar) {
+    if (!this.canEnterChar) {
       return false;
     }
 
-    if(!this.gridService.alphabet.includes(event.key)) {
-      return false
+    if (!this.gridService.alphabet.includes(event.key)) {
+      return false;
     }
-    else{
+    else {
       setTimeout(() => {
         this.canEnterChar = true;
       }, 4000);

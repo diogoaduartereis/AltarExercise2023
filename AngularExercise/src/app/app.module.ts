@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PaymentsPageComponent } from './payments-page/payments-page.component';
-import { MatFormFieldModule } from '@angular/material/form-field/'
+import { MatFormFieldModule } from '@angular/material/form-field/';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
