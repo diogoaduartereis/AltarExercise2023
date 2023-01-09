@@ -4,8 +4,8 @@
             <h6 class="row fullWidth centerMargin justifyContentCenter">Character</h6> 
             <input [disabled]="!this.gridService.isLive" placeholder="Character" class="row centerMargin charInput" type="text" [(ngModel)]="this.gridService.writtenChar" maxlength="1" (keypress)="oneCharOnly($event)">
         </div>
-        <div class="column">
-            
+        <div class="column textAlignCenter">
+            <button [routerLink]="'/payments'" mat-raised-button color="accent">Payments</button>
         </div>
         <div class="column textAlignCenter">
             <button *ngIf="!this.gridService.isLive" (click)="this.generate2DGrid()" mat-raised-button color="primary">Generate 2D Grid</button>

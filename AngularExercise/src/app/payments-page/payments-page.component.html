@@ -31,6 +31,7 @@
           <button style="margin-left: 15px;" [disabled]="!this.gridService.isLive" (click)="this.addPayment()" mat-raised-button color="primary">
             + ADD
           </button>
+          <button class="marginRight" style="float: right;" [routerLink]="'/generator'" mat-raised-button color="accent">Grid Generator</button>
       </form>
 
       <h4>Payment List</h4>

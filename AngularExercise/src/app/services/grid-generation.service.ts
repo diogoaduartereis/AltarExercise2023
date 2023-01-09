@@ -95,7 +95,7 @@ export class GridGenerationService {
   }
 
   getCharValue(charCount: number) {
-    if(charCount >= 9) {
+    if(charCount <= 9) {
       return charCount;
     }
 

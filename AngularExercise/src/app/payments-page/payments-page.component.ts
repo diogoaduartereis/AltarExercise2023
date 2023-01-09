@@ -23,7 +23,7 @@ export class PaymentsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.paymentService.getPayments().subscribe(payments => this.paymentsList = payments)
-
+    this.gridService.cancelGridGeneration();
     this.gridService.generate2DGrid();
   }
 
