@@ -41,9 +41,12 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "sourceMap": false,
+              "codeCoverage": true,
+              "browsers": "ChromeHeadless",
+              "watch": false,
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
