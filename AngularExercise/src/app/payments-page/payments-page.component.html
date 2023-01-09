@@ -1,0 +1,72 @@
+<div style="padding: 10px;">
+    <div *ngIf="this.gridService.isLive">
+        <div class="justifyFlexContentCenter" style="align-items: baseline;">
+            <span class="dot"></span>
+            &nbsp;
+            <p style="font-weight: 500;">LIVE</p>
+        </div>
+        <div class="generatedCode">
+            YOUR CODE: {{this.gridService.generatedCode}}
+        </div>
+    </div>
+    
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Payment</mat-label>
+          <input type="text" matInput [formControl]="paymentFormControl" placeholder="Payment">
+          <mat-error *ngIf="paymentFormControl.hasError('required')">
+            Payment is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" style="margin-left: 15px;">
+            <mat-label>Amount</mat-label>
+            <input type="text" matInput [formControl]="amountFormControl" placeholder="Amount">
+            <mat-error *ngIf="amountFormControl.hasError('pattern')">
+                Only <strong>numeric</strong> values allowed
+              </mat-error>
+            <mat-error *ngIf="amountFormControl.hasError('required')">
+              Amount is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <button style="margin-left: 15px;" [disabled]="!this.gridService.isLive" (click)="this.addPayment()" mat-raised-button color="primary">
+            + ADD
+          </button>
+      </form>
+
+      <h4>Payment List</h4>
+      <div class="example-container mat-elevation-z8">
+        <div class="example-table-container">
+
+            <table mat-table [dataSource]="this.paymentsList" class="example-table">
+            <!-- Name Column -->
+            <ng-container matColumnDef="Name">
+                <th style="width: 70%;" mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.name}}</td>
+            </ng-container>
+        
+            <!-- Amount Column -->
+            <ng-container matColumnDef="Amount">
+                <th style="width: 10%; text-align: center;" mat-header-cell *matHeaderCellDef>Amount</th>
+                <td style="text-align: center;" mat-cell *matCellDef="let row">{{row.amount}}</td>
+            </ng-container>
+        
+            <!-- Code Column -->
+            <ng-container matColumnDef="Code">
+                <th style="width: 10%; text-align: center;" mat-header-cell *matHeaderCellDef>Code</th>
+                <td style="text-align: center;" mat-cell *matCellDef="let row">{{row.code}}</td>
+            </ng-container>
+        
+            <!-- Grid Column -->
+            <ng-container matColumnDef="Grid">
+                <th style="width: 10%; text-align: center;" mat-header-cell *matHeaderCellDef>Grid</th>
+                <td style="text-align: center;" mat-cell *matCellDef="let row">{{row.gridNumberOfCells}}</td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+
+        <!-- <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of GitHub search results"></mat-paginator> -->
+      </div>
+</div>
