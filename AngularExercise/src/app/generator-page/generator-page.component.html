@@ -2,35 +2,49 @@
     <div class="columns">
         <div class="column">
             <h6 class="row fullWidth centerMargin justifyContentCenter">Character</h6> 
-            <input class="row centerMargin" type="text" [(ngModel)]="this.writtenChar" maxlength="1" (keypress)="oneCharOnly($event)">
+            <input [disabled]="!this.isLive" placeholder="Character" class="row centerMargin charInput" type="text" [(ngModel)]="this.writtenChar" maxlength="1" (keypress)="oneCharOnly($event)">
         </div>
         <div class="column">
             
         </div>
-        <div class="column">
-            <button (click)="this.generate2DGrid()" mat-raised-button color="primary">Generate 2D Grid</button>
+        <div class="column textAlignCenter">
+            <button *ngIf="!this.isLive" (click)="this.generate2DGrid()" mat-raised-button color="primary">Generate 2D Grid</button>
+            <button *ngIf="this.isLive" (click)="this.cancelGridGeneration()" mat-raised-button color="warn">Stop Grid Generation</button>
+            <button style="margin-left: 2px;" *ngIf="this.gridHasValues" mat-raised-button color="primary" (click)="this.clearGridValues()" aria-label="Clear Grid Values">
+                <mat-icon>delete</mat-icon>
+            </button>
         </div>
     </div>
     <br><br>
-    <table class="centerMargin">
-        <tr>
-            <th style="border-left: 0px; border-top: 0px;">&nbsp;</th>
-            <th *ngFor="let columnNumber of this.numbersOfColumnsInArray;">
-                {{columnNumber}}
+    <table class="centerMargin" bordercolor="darkGrey">
+        <tr style="border-top: hidden;">
+            <th style="border-left: hidden;">&nbsp;</th>
+            <th *ngFor="let columnNumber of this.numbersOfColumnsInArray; let i = index;" 
+                [style.border-right]="i == this.numberOfColumns - 1 ?  'hidden' : 'black'">
+                    {{columnNumber}}
             </th>
         </tr>
         <tr *ngFor="let row of this.arrayOfCellValues; let i = index;">
-            <th>{{i}}</th>
-            <td style="text-align: center;" *ngFor="let col of row"> {{col}} </td>
+            <th [style.border-bottom]="i == this.numberOfRows - 1 ?  'hidden' : 'black'" style="border-left: hidden;">{{i}}</th>
+            <td [style.border-bottom]="i == this.numberOfRows - 1 ?  'hidden' : 'black'" 
+                [style.border-right]="j == this.numberOfColumns - 1 ?  'hidden' : 'black'" 
+                style="text-align: center;" *ngFor="let col of row; let j = index;"> 
+                    {{col}} 
+            </td>
         </tr>  
     </table>
 
     <br>
     <br>
 
-    <div *ngIf="this.isLive" style="justify-content: center; display: flex;">
-        <span class="dot"></span>
-        &nbsp;
-        <h4>Live</h4>
+    <div *ngIf="this.isLive">
+        <div class="justifyFlexContentCenter" style="align-items: baseline;">
+            <span class="dot"></span>
+            &nbsp;
+            <p style="font-weight: 500;">LIVE</p>
+        </div>
+        <div class="generatedCode">
+            YOUR CODE: {{this.generatedCode}}
+        </div>
     </div>
 </div>
